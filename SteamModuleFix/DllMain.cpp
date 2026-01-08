@@ -31,18 +31,39 @@ BOOL WINAPI hkCreateProcessW( LPCWSTR lpApplicationName, LPWSTR lpCommandLine, L
 				MessageBoxA(0, "Failed to allocate memory for OneTap (Legacy) (Part 4)", "SteamModule", MB_OK | MB_ICONERROR);
 				return 0;
 			}
-        #endif
-        
-        #ifdef PANDORA_LEGACY
+
+        #elif PANDORA_LEGACY
             if (!VirtualAllocEx(lpProcessInformation->hProcess, reinterpret_cast<void*>(0x36FA0000), 0x700000u, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)) {
 				MessageBoxA(0, "Failed to allocate memory for Pandora (Legacy)", "SteamModule", MB_OK | MB_ICONERROR);
             }
-        #endif
 
-        #ifdef PANDORA_DESYNC
+        #elif PANDORA_DESYNC
 			if (!VirtualAllocEx(lpProcessInformation->hProcess, reinterpret_cast<void*>(0x40B50000), 0x74C000u, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)) {
                 MessageBoxA(0, "Failed to allocate memory for Pandora (Desync)", "SteamModule", MB_OK | MB_ICONERROR);
 			}
+
+        #elif CLARITY
+            if (!VirtualAllocEx(lpProcessInformation->hProcess, reinterpret_cast<void*>(0x36080000), 0x237000u, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)) {
+                MessageBoxA(0, "Failed to allocate memory for Clarity.tk", "SteamModule", MB_OK | MB_ICONERROR);
+            }
+
+        #elif MILLIONWARE
+            if (!VirtualAllocEx(lpProcessInformation->hProcess, reinterpret_cast<void*>(0x30930000), 0x41D000u, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)) {
+                MessageBoxA(0, "Failed to allocate memory for Millionware (Part 1)", "SteamModule", MB_OK | MB_ICONERROR);
+                return 0;
+            }
+            if (!VirtualAllocEx(lpProcessInformation->hProcess, reinterpret_cast<void*>(0x1860000), 0x1000u, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)) {
+                MessageBoxA(0, "Failed to allocate memory for Millionware (Part 2)", "SteamModule", MB_OK | MB_ICONERROR);
+                return 0;
+            }
+            if (!VirtualAllocEx(lpProcessInformation->hProcess, reinterpret_cast<void*>(0x1870000), 0x1000u, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)) {
+                MessageBoxA(0, "Failed to allocate memory for Millionware (Part 3)", "SteamModule", MB_OK | MB_ICONERROR);
+                return 0;
+            }
+            if (!VirtualAllocEx(lpProcessInformation->hProcess, reinterpret_cast<void*>(0x1880000), 0x1000u, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)) {
+                MessageBoxA(0, "Failed to allocate memory for Millionware (Part 4)", "SteamModule", MB_OK | MB_ICONERROR);
+                return 0;
+            }
         #endif
     }
 
@@ -74,6 +95,10 @@ DWORD WINAPI SetupHooks(LPVOID lpParam)
         const char* moduleName = "Pandora (Legacy)";
 	#elif PANDORA_DESYNC
         const char* moduleName = "Pandora (Desync)";
+    #elif CLARITY
+	    const char* moduleName = "Clarity.tk";
+    #elif MILLIONWARE
+	    const char* moduleName = "Millionware";
     #endif
 
     char message[256];

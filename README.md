@@ -16,6 +16,8 @@ This project is **NOT** compatible with:
 - **OneTap V2 Legacy**
 - **Pandora Legacy**
 - **Pandora Desync**
+- **Clarity V1**
+- **Millionware Desync**
 
 > No other versions are supported at this time.
 
