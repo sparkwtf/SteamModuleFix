@@ -17,7 +17,7 @@ This project is **NOT** compatible with:
 - **Pandora Legacy**
 - **Pandora Desync**
 - **Clarity V1**
-- **Millionware Desync**
+- **Millionware**
 
 > No other versions are supported at this time.
 
