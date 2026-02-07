@@ -18,6 +18,7 @@ This project is **NOT** compatible with:
 - **Pandora Desync**
 - **Clarity V1**
 - **Millionware**
+- **Fatality Legacy**
 
 > No other versions are supported at this time.
 

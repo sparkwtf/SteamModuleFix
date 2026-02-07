@@ -1,6 +1,7 @@
 <Solution>
   <Configurations>
     <BuildType Name="Clarity" />
+    <BuildType Name="Fatality Legacy" />
     <BuildType Name="Millionware" />
     <BuildType Name="Onetap Legacy" />
     <BuildType Name="Pandora Desync" />

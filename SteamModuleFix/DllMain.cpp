@@ -64,6 +64,11 @@ BOOL WINAPI hkCreateProcessW( LPCWSTR lpApplicationName, LPWSTR lpCommandLine, L
                 MessageBoxA(0, "Failed to allocate memory for Millionware (Part 4)", "SteamModule", MB_OK | MB_ICONERROR);
                 return 0;
             }
+        #elif FATALITY_LEGACY
+		    if (!VirtualAllocEx(lpProcessInformation->hProcess, reinterpret_cast<void*>(0x1420000), 0x326000u, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE)) {
+                MessageBoxA(0, "Failed to allocate memory for Fatality (Legacy)", "SteamModule", MB_OK | MB_ICONERROR);
+				return 0;
+			}
         #endif
     }
 
@@ -99,6 +104,8 @@ DWORD WINAPI SetupHooks(LPVOID lpParam)
 	    const char* moduleName = "Clarity.tk";
     #elif MILLIONWARE
 	    const char* moduleName = "Millionware";
+    #elif FATALITY_LEGACY
+	const char* moduleName = "Fatality (Legacy)";
     #endif
 
     char message[256];
